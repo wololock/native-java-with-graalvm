@@ -1,0 +1,432 @@
+:substratevm-definition: pass:q[[.mark]*Substrate VM* is a framework that allows ahead-of-time (AOT) compilation of Java applications under closed-world assumption into executable images or shared objects (ELF-64 or 64-bit Mach-O).]
+
+=== Graal - a [.mark]*JIT*[.red]^*^ compiler written in Java
+
+[.red]^*^ just-in-time
+
+
+=== [.mark]#JEP 243#: Java-Level JVM Compiler Interface
+
+https://openjdk.java.net/jeps/243
+
+[transition="none",background-color="{bg1}"]
+=== !
+
+[source,bash,subs="quotes"]
+----
+*$*
+----
+
+[transition="none",background-color="{bg1}"]
+=== !
+
+[source,bash,subs="quotes"]
+----
+$ *java*
+----
+
+[transition="none",background-color="{bg1}"]
+=== !
+
+[source,bash,subs="quotes"]
+----
+$ java *-XX:+PrintFlagsFinal*
+----
+
+[transition="none",background-color="{bg1}"]
+=== !
+
+[source,bash,subs="quotes"]
+----
+$ java -XX:+PrintFlagsFinal *-XX:+UnlockExperimentalVMOptions*
+----
+
+[transition="none",background-color="{bg1}"]
+=== !
+
+[source,bash,subs="quotes"]
+----
+$ java -XX:+PrintFlagsFinal -XX:+UnlockExperimentalVMOptions \
+    *-XX:+EnableJVMCI*
+----
+
+[transition="none",background-color="{bg1}"]
+=== !
+
+[source,bash,subs="quotes"]
+----
+$ java -XX:+PrintFlagsFinal -XX:+UnlockExperimentalVMOptions \
+    -XX:+EnableJVMCI *-XX:+UseJVMCICompiler*
+----
+
+[transition="none",background-color="{bg1}"]
+=== !
+
+[source,bash,subs="quotes"]
+----
+$ java -XX:+PrintFlagsFinal -XX:+UnlockExperimentalVMOptions \
+    -XX:+EnableJVMCI -XX:+UseJVMCICompiler *-version*
+----
+
+[transition="none",background-color="{bg1}"]
+=== !
+
+[source,bash,subs="quotes"]
+----
+$ java -XX:+PrintFlagsFinal -XX:+UnlockExperimentalVMOptions \
+    -XX:+EnableJVMCI -XX:+UseJVMCICompiler -version *| grep -i jvmci*
+----
+
+[transition="none",background-color="{bg1}"]
+=== !
+
+[source,bash,subs="quotes"]
+----
+$ java -XX:+PrintFlagsFinal -XX:+UnlockExperimentalVMOptions \
+    -XX:+EnableJVMCI -XX:+UseJVMCICompiler -version | grep -i jvmci
+  bool BootstrapJVMCI                = false    {JVMCI experimental} {default}
+  bool EnableJVMCI                   = true     {JVMCI experimental} {command line}
+  intx JVMCICounterSize              = 0        {JVMCI experimental} {default}
+  bool JVMCICountersExcludeCompiler  = true     {JVMCI experimental} {default}
+  intx JVMCIHostThreads              = 1        {JVMCI experimental} {default}
+  intx JVMCINMethodSizeLimit         = 655360   {JVMCI experimental} {default}
+  bool JVMCIPrintProperties          = false    {JVMCI experimental} {default}
+  intx JVMCIThreads                  = 1        {JVMCI experimental} {default}
+  intx JVMCITraceLevel               = 0        {JVMCI experimental} {default}
+  intx MethodProfileWidth            = 0        {JVMCI experimental} {default}
+  bool PrintBootstrap                = true     {JVMCI experimental} {default}
+  bool UseJVMCICompiler              = true     {JVMCI experimental} {command line}
+openjdk version "9.0.4"
+OpenJDK Runtime Environment (build 9.0.4+11)
+OpenJDK 64-Bit Server VM (build 9.0.4+11, mixed mode)
+----
+
+=== !
+
+image::graal-twitter.png[]
+
+Source: https://www.youtube.com/watch?v=W-5kUG8_mbk
+
+=== {graalvm}
+
+https://www.graalvm.org
+
+
+=== High-performance +++<br>+++ polyglot [.mark]#VM#
+
+[%step,role="nobullets"]
+* A [.mark]*universal* virtual machine for running: *JavaScript*, *Python*, *Ruby*, *R*, *JVM*-based languages, and *LLVM*-based languages.
+* *Zero overhead* [.mark]*interoperability* between programming languages.
+* Supports *native image* [.mark]*ahead-of-time* compilation.
+* And even *much* more. -> https://graalvm.org
+
+
+=== Substrate VM
+
+[.mark]*Substrate VM* is an *embeddable VM* for, and written in, a *subset of Java* optimized to **execute Truffle[.red]^*^**
+languages **ahead-of-time compiled** using Graal integrating with **native development tools**.
+
+'''
+
+[.xs]#*Christian Wimmer*, "Safe and Efficient Hybrid Memory Management for Java", JVMLS 2015#
+
+[.xs]##[.red]^*^ A language implementation framework for creating languages and instrumentations for GraalVM.##
+
+[.stretch]
+=== Substrate VM [.line-through]_does_ doesn't support...
+
+
+[.stretch]
+=== Substrate VM [.line-through]_does_ doesn't support...
+
+Dynamic Class Loading / Unloading
+
+[.stretch]
+=== Substrate VM [.line-through]_does_ doesn't support...
+
+[.line-through]#Dynamic Class Loading / Unloading#
+
+InvokeDynamic Bytecode and Method Handles
+
+[.stretch]
+=== Substrate VM [.line-through]_does_ doesn't support...
+
+[.line-through]#Dynamic Class Loading / Unloading#
+
+[.line-through]#InvokeDynamic Bytecode and Method Handles#
+
+Finalizers
+
+[.stretch]
+=== Substrate VM [.line-through]_does_ doesn't support...
+
+[.line-through]#Dynamic Class Loading / Unloading#
+
+[.line-through]#InvokeDynamic Bytecode and Method Handles#
+
+[.line-through]#Finalizers#
+
+Security Manager `java.lang.SecurityManager`
+
+[.stretch]
+=== Substrate VM [.line-through]_does_ doesn't support...
+
+[.line-through]#Dynamic Class Loading / Unloading#
+
+[.line-through]#InvokeDynamic Bytecode and Method Handles#
+
+[.line-through]#Finalizers#
+
+[.line-through]#Security Manager `java.lang.SecurityManager`#
+
+JVMTI, JMX, other native VM interfaces
+
+
+[.stretch]
+=== Substrate VM [.line-through]_does_ doesn't support...
+
+[.line-through]#Dynamic Class Loading / Unloading#
+
+[.line-through]#InvokeDynamic Bytecode and Method Handles#
+
+[.line-through]#Finalizers#
+
+[.line-through]#Security Manager `java.lang.SecurityManager`#
+
+[.line-through]#JVMTI, JMX, other native VM interfaces#
+
+'''
+
+~https://github.com/oracle/graal/blob/master/substratevm/LIMITATIONS.md~
+
+=== !
+
+image::substratevm-limitations-01.png[background,cover]
+
+[background-color="{bg1}"]
+=== !
+
+[source,bash,subs="quotes"]
+----
+$ _
+----
+
+[background-color="{bg1}"]
+=== !
+
+[source,bash,subs="quotes"]
+----
+*$ sdk install java 19.0.0-grl*
+----
+
+[background-color="{bg1}"]
+=== !
+
+[source,bash,subs="quotes"]
+----
+$ sdk install java 19.0.0-grl
+
+$ _
+----
+
+[background-color="{bg1}"]
+=== !
+
+[source,bash,subs="quotes"]
+----
+$ sdk install java 19.0.0-grl
+
+*$ sdk use java 19.0.0-grl*
+----
+
+[background-color="{bg1}"]
+=== !
+
+[source,bash,subs="quotes"]
+----
+$ sdk install java 19.0.0-grl
+
+$ sdk use java 19.0.0-grl
+
+$ _
+----
+
+[background-color="{bg1}"]
+=== !
+
+[source,bash,subs="quotes"]
+----
+$ sdk install java 19.0.0-grl
+
+$ sdk use java 19.0.0-grl
+
+*$ java -version*
+----
+
+[background-color="{bg1}"]
+=== !
+
+[source,bash,subs="quotes"]
+----
+$ sdk install java 19.0.0-grl
+
+$ sdk use java 19.0.0-grl
+
+$ java -version
+openjdk version "1.8.0_212"
+OpenJDK Runtime Environment (build 1.8.0_212.buildslave.jdk8u-src-tar--b03)
+OpenJDK GraalVM CE 19.0.0 (build 25.212-b03-jvmci-19-b01, mixed mode)
+
+$ _
+----
+
+[background-color="{bg1}"]
+=== !
+
+[source,bash,subs="quotes"]
+----
+$ sdk install java 19.0.0-grl
+
+$ sdk use java 19.0.0-grl
+
+$ java -version
+openjdk version "1.8.0_212"
+OpenJDK Runtime Environment (build [.mark]*1.8.0_212*.buildslave.jdk8u-src-tar--b03)
+OpenJDK GraalVM CE 19.0.0 (build 25.212-b03-jvmci-19-b01, mixed mode)
+
+$ _
+----
+
+[background-color="{bg1}"]
+=== !
+
+[source,bash,subs="quotes"]
+----
+$ sdk install java 19.0.0-grl
+
+$ sdk use java 19.0.0-grl
+
+$ java -version
+openjdk version "1.8.0_212"
+OpenJDK Runtime Environment (build [.mark]*1.8.0_212*.buildslave.jdk8u-src-tar--b03)
+OpenJDK [.mark]*GraalVM CE 19.0.0* (build 25.212-b03-jvmci-19-b01, mixed mode)
+
+$ _
+----
+
+[background-color="{bg1}"]
+=== !
+
+[source,bash,subs="quotes"]
+----
+$ sdk install java 19.0.0-grl
+
+$ sdk use java 19.0.0-grl
+
+$ java -version
+openjdk version "1.8.0_212"
+OpenJDK Runtime Environment (build [.mark]*1.8.0_212*.buildslave.jdk8u-src-tar--b03)
+OpenJDK [.mark]*GraalVM CE 19.0.0* (build 25.212-b03-jvmci-19-b01, mixed mode)
+
+*$ gu install native-image*
+----
+
+[background-color="{bg1}"]
+=== !
+
+[source,bash,subs="quotes"]
+----
+$ sdk install java 19.0.0-grl
+
+$ sdk use java 19.0.0-grl
+
+$ java -version
+openjdk version "1.8.0_212"
+OpenJDK Runtime Environment (build [.mark]*1.8.0_212*.buildslave.jdk8u-src-tar--b03)
+OpenJDK [.mark]*GraalVM CE 19.0.0* (build 25.212-b03-jvmci-19-b01, mixed mode)
+
+$ gu install native-image
+
+$ _
+----
+
+[background-color="{bg1}"]
+=== !
+
+[source,bash,subs="quotes"]
+----
+$ sdk install java 19.0.0-grl
+
+$ sdk use java 19.0.0-grl
+
+$ java -version
+openjdk version "1.8.0_212"
+OpenJDK Runtime Environment (build [.mark]*1.8.0_212*.buildslave.jdk8u-src-tar--b03)
+OpenJDK [.mark]*GraalVM CE 19.0.0* (build 25.212-b03-jvmci-19-b01, mixed mode)
+
+$ gu install native-image
+
+*$ native-image --version*
+----
+
+[background-color="{bg1}"]
+=== !
+
+[source,bash,subs="quotes"]
+----
+$ sdk install java 19.0.0-grl
+
+$ sdk use java 19.0.0-grl
+
+$ java -version
+openjdk version "1.8.0_212"
+OpenJDK Runtime Environment (build [.mark]*1.8.0_212*.buildslave.jdk8u-src-tar--b03)
+OpenJDK [.mark]*GraalVM CE 19.0.0* (build 25.212-b03-jvmci-19-b01, mixed mode)
+
+$ gu install native-image
+
+$ native-image --version
+GraalVM Version 19.0.0 CE
+
+$ _
+----
+
+[background-color="{bg1}"]
+=== !
+
+[source,bash,subs="quotes"]
+----
+$ _
+----
+
+[background-color="{bg1}"]
+=== !
+
+[source,bash,subs="quotes"]
+----
+*$ ls $JAVA_HOME/bin*
+----
+
+[background-color="{bg1}"]
+=== !
+
+[source,bash,subs="quotes"]
+----
+$ ls $JAVA_HOME/bin
+[.green]##appletviewer  jcmd        jstatd                  rmic
+clhsdb        jconsole    jvisualvm               rmid
+extcheck      jdb         keytool                 rmiregistry
+[.turquoise]#gu#            jdeps       [.turquoise]#lli#                     schemagen
+hsdb          jhat        native2ascii            serialver
+idlj          jinfo       [.turquoise]#native-image#            servertool
+jar           jjs         [.turquoise]#native-image-configure#  tnameserv
+jarsigner     jmap        [.turquoise]#node#                    unpack200
+java          jps         [.turquoise]#npm#                     wsgen
+javac         jrunscript  orbd                    wsimport
+javadoc       [.turquoise]#js#          pack200                 xjc
+javah         jsadebugd   policytool
+javap         jstack      [.turquoise]#polyglot#
+java-rmi.cgi  jstat       [.turquoise]#rebuild-images###
+
+----
+

@@ -1,0 +1,94 @@
+buildscript {
+    dependencies {
+        classpath 'org.ysb33r.gradle:vfs-gradle-plugin:1.0'
+        classpath 'commons-httpclient:commons-httpclient:3.1'
+    }
+}
+
+plugins {
+  id 'org.asciidoctor.convert' version '1.5.8.1'
+  id 'com.github.jruby-gradle.base' version '1.4.0'
+}
+
+apply plugin: 'org.ysb33r.vfs'
+apply plugin: 'java'
+apply plugin: 'idea'
+
+version = '1.0.0-SNAPSHOT'
+
+ext {
+    revealjsVersion = '3.8.0'
+    asciidoctorBackendVersion = 'master'
+    downloadDir = new File(buildDir,'download')
+    templateDir = new File(downloadDir,'templates')
+    revealjsDir   = new File(downloadDir,'reveal.js')
+}
+
+repositories {
+    jcenter()
+    maven { url "http://rubygems-proxy.torquebox.org/releases" }
+}
+
+dependencies {
+    gems 'rubygems:slim:3.0.8'
+    gems 'rubygems:thread_safe:0.3.5'
+}
+
+task download {
+    doLast {
+        mkdir downloadDir
+        vfs {
+            cp "zip:https://github.com/asciidoctor/asciidoctor-reveal.js/archive/${asciidoctorBackendVersion}.zip!asciidoctor-reveal.js-${asciidoctorBackendVersion}",
+            templateDir, recursive:true, overwrite:true
+            cp "zip:https://github.com/hakimel/reveal.js/archive/${revealjsVersion}.zip!reveal.js-${revealjsVersion}",
+            revealjsDir, recursive:true, overwrite:true
+        }
+    }
+}
+
+download {
+    description "Download extra revealjs resources"
+    outputs.dir templateDir
+    outputs.dir revealjsDir
+}
+
+asciidoctorj {
+  version = '1.6.2'
+}
+
+asciidoctor {
+    dependsOn jrubyPrepare, download
+    sources {
+        include 'index.adoc'
+    }
+    resources {
+        from (sourceDir) {
+            include 'images/**'
+            include 'css/**'
+        }
+        from (downloadDir) {
+            include 'reveal.js/**'
+        }
+    }
+    backends 'revealjs'
+    attributes ([
+        'sourcedir': project.sourceSets.main.java.srcDirs[0],
+        'source-highlighter': 'highlightjs',
+        'imagesdir': './images',
+        'toc': 'left',
+        'icons': 'font',
+        'setanchors': '',
+        'idprefix': 'slide-',
+        'idseparator': '-',
+        'docinfo1': '',
+        'revealjs_theme': 'white',
+        'revealjs_transition': 'none',
+        'revealjs_history': 'true',
+        'revealjs_slideNumber': 'false',
+        'revealjs_plugin_pdf': 'enabled',
+        'revealjs_progress': 'false',
+        'revealjs_backgroundTransition': 'false',
+        //'revealjs_height': '800',
+    ])
+    options template_dirs: [new File(templateDir,'templates').absolutePath]
+}

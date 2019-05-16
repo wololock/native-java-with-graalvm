@@ -1,0 +1,77 @@
+= Native Java with *{graalvm}*
+:event-name: GR8Conf EU 2019, May 27th - 29th // #GR8Conf
+:event-logo: gr8conf-2019.svg
+:twitter: @wololock
+:revnumber: {project-version}
+:imagesdir: images
+:sourcedir: ../java
+:customcss: css/custom.css
+:highlightjs-theme: css/androidstudio.min.css
+:listing-caption: Listing
+:bg1: #666
+:bg2: #3D749C
+:graalvm: pass:q[<span class="color-graal-1">Graal</span><span class="color-graal-2">VM<sub class="xxs">TM</sub></span>]
+
+
+A gentle introduction to the [.mark]#native image# generation
+
+== You will learn today...
+
+[%step,role="nobullets"]
+* [.mark]*what* is the difference between Graal and *{graalvm}*
+* [.mark]*how* to use `native-image` command line tool
+* [.mark]*when* it makes sense to use native images +
+
+[.stretch.whoami]
+== whoami
+
+[.author.animation-slide-left]
+image::wololock.jpg[scaledwidth=20%]
+
+[.lora.animation-slide-bottom.text-left.margin-left-200.font-3rem]
+_Hello, my name is_ +
+_[.mark]**Szymon Stepniak**_
+
+
+[.animation-slide-right.text-left.margin-left-200.margin-top-30]
+I blog @ https://e.printstacktrace.blog[e.printstacktrace.blog] +
+Continuous Delivery Architect @ image:upwork.jpg[height=32,role="upwork"] +
+icon:twitter[] @wololock
+
+== Part 1: Graal vs {graalvm}
+
+include::graal.adoc[]
+
+== Part 2: `native-image`
+
+Compiling [.mark]*Groovy* program to a native image
+
+include::demo.adoc[]
+
+== Part 3: [.mark]#benchmark#
+
+Is native image a better choice for our applications?
+
+include::ratpack.adoc[]
+
+[.stretch.whoami]
+== Thank you!
+
+[.author.animation-slide-left]
+image::wololock.jpg[scaledwidth=20%]
+
+[.lora.animation-slide-bottom.text-left.margin-left-200.font-3rem]
+--
+_That's all, folks!_
+
+Do you have any [.mark]*questions*?
+--
+
+
+[.animation-slide-right.text-left.margin-left-200.margin-top-60]
+--
+[.mark]*Handout*, slides, and all materials are available:
+
+[.smaller]
+*https://github.com/wololock/native-java-with-graalvm*
+--

@@ -1,0 +1,1517 @@
+
+[transition="none",background-color="{bg1}"]
+=== !
+
+[source,groovy]
+----
+// RandomNumber.groovy
+import groovy.transform.CompileStatic
+
+@CompileStatic
+class RandomNumber {
+    static void main(String[] args) {
+        def random = new Random().nextInt(1000)
+
+        println "The random number is: $random"
+
+        def sum = (0..random).sum { int num -> num * 2 }
+
+        println "The doubled sum of numbers between 0 and $random is $sum"
+    }
+}
+----
+
+[transition="none",background-color="{bg1}"]
+=== !
+
+[source,bash,subs="quotes,macros"]
+----
+$ _
+----
+
+[transition="none",background-color="{bg1}"]
+=== !
+
+[source,bash,subs="quotes,macros"]
+----
+*$ time groovy RandomNumber.groovy*
+----
+
+[transition="none",background-color="{bg1}"]
+=== !
+
+[source,bash,subs="quotes,macros"]
+----
+*$ time groovy RandomNumber.groovy*
+The random number is: 146
+The doubled sum of numbers between 0 and 146 is 21462
+
+real	0m0,959s
+user	0m1,879s
+sys	0m0,205s
+
+$ _
+----
+
+[transition="none",background-color="{bg1}"]
+=== !
+
+[source,bash,subs="quotes,macros"]
+----
+*$ time groovy RandomNumber.groovy*
+The random number is: 146
+The doubled sum of numbers between 0 and 146 is 21462
+
+real	[.mark]*0m0,959s*
+user	0m1,879s
+sys	0m0,205s
+
+$ _
+----
+
+[transition="none",background-color="{bg1}"]
+=== !
+
+[source,bash,subs="quotes,macros"]
+----
+$ _
+----
+
+[transition="none",background-color="{bg1}"]
+=== !
+
+[source,bash,subs="quotes,macros"]
+----
+*$ groovyc RandomNumber.groovy*
+----
+
+[transition="none",background-color="{bg1}"]
+=== !
+
+[source,bash,subs="quotes,macros"]
+----
+$ groovyc RandomNumber.groovy
+
+$ _
+----
+
+[transition="none",background-color="{bg1}"]
+=== !
+
+[source,bash,subs="quotes,macros"]
+----
+$ groovyc RandomNumber.groovy
+
+*$ ls -lah *.class*
+----
+
+[transition="none",background-color="{bg1}"]
+=== !
+
+[source,bash,subs="quotes,macros"]
+----
+$ groovyc RandomNumber.groovy
+
+$ ls -lah *.class
+-rw-rw-r-- 1 user user 2,8K 05-14 23:00 'RandomNumber$_main_closure1.class'
+-rw-rw-r-- 1 user user 3,8K 05-14 23:00  RandomNumber.class
+
+$ _
+----
+
+[transition="none",background-color="{bg1}"]
+=== !
+
+[source,bash,subs="quotes,macros"]
+----
+$ groovyc RandomNumber.groovy
+
+$ ls -lah *.class
+-rw-rw-r-- 1 user user 2,8K 05-14 23:00 'RandomNumber$_main_closure1.class'
+-rw-rw-r-- 1 user user 3,8K 05-14 23:00  RandomNumber.class
+
+**$ time java -cp ".:$GROOVY_HOME/lib/groovy-2.5.7.jar" RandomNumber**
+----
+
+[transition="none",background-color="{bg1}"]
+=== !
+
+[source,bash,subs="quotes,macros"]
+----
+$ groovyc RandomNumber.groovy
+
+$ ls -lah *.class
+-rw-rw-r-- 1 user user 2,8K 05-14 23:00 'RandomNumber$_main_closure1.class'
+-rw-rw-r-- 1 user user 3,8K 05-14 23:00  RandomNumber.class
+
+**$ time java -cp ".:$GROOVY_HOME/lib/groovy-2.5.7.jar" RandomNumber**
+The random number is: 167
+The doubled sum of numbers between 0 and 167 is 28056
+
+real	0m0,354s
+user	0m0,808s
+sys	0m0,088s
+
+$ _
+----
+
+[transition="none",background-color="{bg1}"]
+=== !
+
+[source,bash,subs="quotes,macros"]
+----
+$ groovyc RandomNumber.groovy
+
+$ ls -lah *.class
+-rw-rw-r-- 1 user user 2,8K 05-14 23:00 'RandomNumber$_main_closure1.class'
+-rw-rw-r-- 1 user user 3,8K 05-14 23:00  RandomNumber.class
+
+**$ time java -cp ".:$GROOVY_HOME/lib/groovy-2.5.7.jar" RandomNumber**
+The random number is: 167
+The doubled sum of numbers between 0 and 167 is 28056
+
+real	[.mark]**0m0,354s**
+user	0m0,808s
+sys	0m0,088s
+
+$ _
+----
+
+[transition="none",background-color="{bg1}"]
+=== !
+
+[source,bash,subs="quotes,macros"]
+----
+$ _
+----
+
+[transition="none",background-color="{bg1}"]
+=== !
+
+[source,bash,subs="quotes,macros"]
+----
+$ *native-image*
+----
+
+[transition="none",background-color="{bg1}"]
+=== !
+
+[source,bash,subs="quotes,macros"]
+----
+$ native-image *--no-server*
+----
+
+[transition="none",background-color="{bg1}"]
+=== !
+
+[source,bash,subs="quotes,macros"]
+----
+$ native-image --no-server \
+    *-cp ".:$GROOVY_HOME/lib/groovy-2.5.7.jar"*
+----
+
+[transition="none",background-color="{bg1}"]
+=== !
+
+[source,bash,subs="quotes,macros"]
+----
+$ native-image --no-server \
+    -cp ".:$GROOVY_HOME/lib/groovy-2.5.7.jar" \
+    *RandomNumber*
+----
+
+[transition="none",background-color="{bg1}"]
+=== !
+
+[source,bash,subs="quotes,macros"]
+----
+$ native-image --no-server \
+    -cp ".:$GROOVY_HOME/lib/groovy-2.5.7.jar" \
+    RandomNumber
+[randomnumber:32448]    classlist:   2,436.23 ms
+[randomnumber:32448]        (cap):     815.31 ms
+[randomnumber:32448]        setup:   1,976.01 ms
+[randomnumber:32448]     analysis:   8,237.69 ms
+Warning: Aborting stand-alone image build. Unsupported features in 2 methods
+Detailed message:
+Error: com.oracle.svm.hosted.substitute.DeletedElementException: Unsupported method
+java.lang.ClassLoader.defineClass(String, byte[], int, int, ProtectionDomain) is reachable: The declaring class of this element has been substituted, but this element is not present in the substitution class
+To diagnose the issue, you can add the option --report-unsupported-elements-at-runtime. The unsupported element is then reported at run time when it is accessed the first time.
+...
+Warning: Image 'randomnumber' is a fallback image that requires a JDK
+    for execution (use --no-fallback to suppress fallback image generation).
+
+$ _
+----
+
+[transition="none",background-color="{bg1}"]
+=== !
+
+[source,bash,subs="quotes,macros"]
+----
+$ native-image --no-server \
+    -cp ".:$GROOVY_HOME/lib/groovy-2.5.7.jar" \
+    RandomNumber
+[randomnumber:32448]    classlist:   2,436.23 ms
+[randomnumber:32448]        (cap):     815.31 ms
+[randomnumber:32448]        setup:   1,976.01 ms
+[randomnumber:32448]     analysis:   8,237.69 ms
+Warning: Aborting stand-alone image build. Unsupported features in 2 methods
+Detailed message:
+Error: com.oracle.svm.hosted.substitute.DeletedElementException: Unsupported method
+java.lang.ClassLoader.defineClass(String, byte[], int, int, ProtectionDomain) is reachable: The declaring class of this element has been substituted, but this element is not present in the substitution class
+To diagnose the issue, you can add the option [.mark]*--report-unsupported-elements-at-runtime*. The unsupported element is then reported at run time when it is accessed the first time.
+...
+Warning: Image 'randomnumber' is a fallback image that requires a JDK
+    for execution (use --no-fallback to suppress fallback image generation).
+
+$ _
+----
+
+[transition="none",background-color="{bg1}"]
+=== !
+
+[source,bash,subs="quotes,macros"]
+----
+$ native-image --no-server \
+    -cp ".:$GROOVY_HOME/lib/groovy-2.5.7.jar" \
+    RandomNumber
+[randomnumber:32448]    classlist:   2,436.23 ms
+[randomnumber:32448]        (cap):     815.31 ms
+[randomnumber:32448]        setup:   1,976.01 ms
+[randomnumber:32448]     analysis:   8,237.69 ms
+Warning: Aborting stand-alone image build. Unsupported features in 2 methods
+Detailed message:
+Error: com.oracle.svm.hosted.substitute.DeletedElementException: Unsupported method
+java.lang.ClassLoader.defineClass(String, byte[], int, int, ProtectionDomain) is reachable: The declaring class of this element has been substituted, but this element is not present in the substitution class
+To diagnose the issue, you can add the option [.mark]*--report-unsupported-elements-at-runtime*. The unsupported element is then reported at run time when it is accessed the first time.
+...
+Warning: Image 'randomnumber' is a fallback image that requires a JDK
+    for execution (use [.mark]*--no-fallback* to suppress fallback image generation).
+
+$ _
+----
+
+[transition="none",background-color="{bg1}"]
+=== !
+
+[source,bash,subs="quotes,macros"]
+----
+$ native-image --no-server \
+    -cp ".:$GROOVY_HOME/lib/groovy-2.5.7.jar" \
+    RandomNumber
+----
+
+[transition="none",background-color="{bg1}"]
+=== !
+
+[source,bash,subs="quotes,macros"]
+----
+$ native-image --no-server \
+    *--no-fallback* \
+    -cp ".:$GROOVY_HOME/lib/groovy-2.5.7.jar" \
+    RandomNumber
+----
+
+[transition="none",background-color="{bg1}"]
+=== !
+
+[source,bash,subs="quotes,macros"]
+----
+$ native-image --no-server \
+    --no-fallback \
+    *--report-unsupported-elements-at-runtime* \
+    -cp ".:$GROOVY_HOME/lib/groovy-2.5.7.jar" \
+    RandomNumber
+----
+
+[transition="none",background-color="{bg1}"]
+=== !
+
+[source,bash,subs="quotes,macros"]
+----
+$ native-image --no-server \
+    --no-fallback \
+    --report-unsupported-elements-at-runtime \
+    -cp ".:$GROOVY_HOME/lib/groovy-2.5.7.jar" \
+    RandomNumber
+[randomnumber:15459]    classlist:   2,421.91 ms
+[randomnumber:15459]     analysis:  15,830.52 ms
+Error: Unsupported features in 3 methods
+Detailed message:
+Error: com.oracle.graal.pointsto.constraints.UnresolvedElementException:
+Discovered unresolved method during parsing:
+org.codehaus.groovy.control.XStreamUtils.serialize(java.lang.String, java.lang.Object).
+To diagnose the issue you can use the --allow-incomplete-classpath option.
+
+$ _
+----
+
+[transition="none",background-color="{bg1}"]
+=== !
+
+[source,bash,subs="quotes,macros"]
+----
+$ native-image --no-server \
+    --no-fallback \
+    --report-unsupported-elements-at-runtime \
+    -cp ".:$GROOVY_HOME/lib/groovy-2.5.7.jar" \
+    RandomNumber
+[randomnumber:15459]    classlist:   2,421.91 ms
+[randomnumber:15459]     analysis:  15,830.52 ms
+Error: Unsupported features in 3 methods
+Detailed message:
+Error: com.oracle.graal.pointsto.constraints.UnresolvedElementException:
+Discovered unresolved method during parsing:
+org.codehaus.groovy.control.XStreamUtils.serialize(java.lang.String, java.lang.Object).
+To diagnose the issue you can use the [.mark]*--allow-incomplete-classpath* option.
+
+$ _
+----
+
+[transition="none",background-color="{bg1}"]
+=== !
+
+[source,bash,subs="quotes,macros"]
+----
+$ native-image --no-server \
+    --no-fallback \
+    --report-unsupported-elements-at-runtime \
+    -cp ".:$GROOVY_HOME/lib/groovy-2.5.7.jar" \
+    RandomNumber
+----
+
+[transition="none",background-color="{bg1}"]
+=== !
+
+[source,bash,subs="quotes,macros"]
+----
+$ native-image --no-server \
+    --no-fallback \
+    --report-unsupported-elements-at-runtime \
+    *--allow-incomplete-classpath* \
+    -cp ".:$GROOVY_HOME/lib/groovy-2.5.7.jar" \
+    RandomNumber
+----
+
+[transition="none",background-color="{bg1}"]
+=== !
+
+[source,bash,subs="quotes,macros"]
+----
+$ native-image --no-server \
+    --no-fallback \
+    --report-unsupported-elements-at-runtime \
+    --allow-incomplete-classpath \
+    -cp ".:$GROOVY_HOME/lib/groovy-2.5.7.jar" \
+    RandomNumber
+[randomnumber:25925]    classlist:   2,415.95 ms
+[randomnumber:25925]     analysis:  33,234.24 ms
+Error: Unsupported features in 6 methods
+Detailed message:
+Error: com.oracle.graal.pointsto.constraints.UnsupportedFeatureException:
+Invoke with MethodHandle argument could not be reduced to at most
+a single call: java.lang.invoke.MethodHandle.bindTo(Object)
+...
+Error: type is not available in this platform: org.graalvm.nativeimage.hosted.Feature
+Trace: 	object java.lang.Class[]
+	object java.lang.invoke.MethodType
+	object java.lang.invoke.MethodType$ConcurrentWeakInternSet$WeakEntry
+	object java.util.concurrent.ConcurrentHashMap$Node
+	object java.lang.invoke.MethodType$ConcurrentWeakInternSet
+	method java.lang.invoke.MethodType.makeImpl(Class, Class[], boolean)#
+
+$ _
+----
+
+[transition="none",background-color="{bg1}"]
+=== !
+
+[source,bash,subs="quotes,macros"]
+----
+$ native-image --no-server \
+    --no-fallback \
+    --report-unsupported-elements-at-runtime \
+    --allow-incomplete-classpath \
+    -cp ".:$GROOVY_HOME/lib/groovy-2.5.7.jar" \
+    RandomNumber
+----
+
+[transition="none",background-color="{bg1}"]
+=== !
+
+[source,bash,subs="quotes,macros"]
+----
+$ native-image --no-server \
+    --no-fallback \
+    --report-unsupported-elements-at-runtime \
+    --allow-incomplete-classpath \
+    *--initialize-at-build-time* \
+    -cp ".:$GROOVY_HOME/lib/groovy-2.5.7.jar" \
+    RandomNumber
+----
+
+[transition="none",background-color="{bg1}"]
+=== !
+
+[source,bash,subs="quotes,macros"]
+----
+$ native-image --no-server \
+    --no-fallback \
+    --report-unsupported-elements-at-runtime \
+    --allow-incomplete-classpath \
+    --initialize-at-build-time \
+    -cp ".:$GROOVY_HOME/lib/groovy-2.5.7.jar" \
+    RandomNumber
+[randomnumber:31487]    classlist:   2,445.92 ms
+[randomnumber:31487]        (cap):     816.43 ms
+[randomnumber:31487]        setup:   1,983.95 ms
+Warning: class initialization of class org.codehaus.groovy.control.XStreamUtils failed with exception java.lang.NoClassDefFoundError: com/thoughtworks/xstream/io/HierarchicalStreamDriver. This class will be initialized at run time because either option --report-unsupported-elements-at-runtime or option --allow-incomplete-classpath is used for image building. Use the option --initialize-at-run-time=org.codehaus.groovy.control.XStreamUtils to explicitly request delayed initialization of this class.
+Warning: class initialization of class groovy.grape.GrapeIvy failed with exception java.lang.NoClassDefFoundError: org/apache/ivy/core/module/descriptor/DependencyDescriptor. This class will be initialized at run time because either option --report-unsupported-elements-at-runtime or option --allow-incomplete-classpath is used for image building. Use the option --initialize-at-run-time=groovy.grape.GrapeIvy to explicitly request delayed initialization of this class.
+[randomnumber:31487]     analysis:  25,234.32 ms
+...
+[randomnumber:31487]      compile:  26,199.19 ms
+[randomnumber:31487]        image:   1,896.69 ms
+[randomnumber:31487]        write:     345.78 ms
+[randomnumber:31487]      [total]:  60,623.87 ms
+
+$ _
+----
+
+[transition="none",background-color="{bg1}"]
+=== !
+
+[source,bash,subs="quotes,macros"]
+----
+$ native-image --no-server \
+    --no-fallback \
+    --report-unsupported-elements-at-runtime \
+    --allow-incomplete-classpath \
+    --initialize-at-build-time \
+    -cp ".:$GROOVY_HOME/lib/groovy-2.5.7.jar" \
+    RandomNumber
+[randomnumber:31487]    classlist:   2,445.92 ms
+[randomnumber:31487]        (cap):     816.43 ms
+[randomnumber:31487]        setup:   1,983.95 ms
+Warning: class initialization of class org.codehaus.groovy.control.XStreamUtils failed with exception java.lang.NoClassDefFoundError: com/thoughtworks/xstream/io/HierarchicalStreamDriver. This class will be initialized at run time because either option --report-unsupported-elements-at-runtime or option --allow-incomplete-classpath is used for image building. Use the option --initialize-at-run-time=org.codehaus.groovy.control.XStreamUtils to explicitly request delayed initialization of this class.
+Warning: class initialization of class groovy.grape.GrapeIvy failed with exception java.lang.NoClassDefFoundError: org/apache/ivy/core/module/descriptor/DependencyDescriptor. This class will be initialized at run time because either option --report-unsupported-elements-at-runtime or option --allow-incomplete-classpath is used for image building. Use the option --initialize-at-run-time=groovy.grape.GrapeIvy to explicitly request delayed initialization of this class.
+[randomnumber:31487]     analysis:  25,234.32 ms
+...
+[randomnumber:31487]      compile:  26,199.19 ms
+[randomnumber:31487]        image:   1,896.69 ms
+[randomnumber:31487]        write:     345.78 ms
+[randomnumber:31487]      [total]:  [.mark]*60,623.87 ms*
+
+$ _
+----
+
+[transition="none",background-color="{bg1}"]
+=== !
+
+[source,bash,subs="quotes,macros"]
+----
+$ native-image --no-server \
+    --no-fallback \
+    --report-unsupported-elements-at-runtime \
+    --allow-incomplete-classpath \
+    --initialize-at-build-time \
+    -cp ".:$GROOVY_HOME/lib/groovy-2.5.7.jar" \
+    RandomNumber
+[randomnumber:31487]    classlist:   2,445.92 ms
+[randomnumber:31487]        (cap):     816.43 ms
+[randomnumber:31487]        setup:   1,983.95 ms
+[.mark]#Warning: class initialization of class org.codehaus.groovy.control.XStreamUtils failed with exception java.lang.NoClassDefFoundError: com/thoughtworks/xstream/io/HierarchicalStreamDriver. This class will be initialized at run time because either option --report-unsupported-elements-at-runtime or option --allow-incomplete-classpath is used for image building. Use the option --initialize-at-run-time=org.codehaus.groovy.control.XStreamUtils to explicitly request delayed initialization of this class.#
+[.mark]#Warning: class initialization of class groovy.grape.GrapeIvy failed with exception java.lang.NoClassDefFoundError: org/apache/ivy/core/module/descriptor/DependencyDescriptor. This class will be initialized at run time because either option --report-unsupported-elements-at-runtime or option --allow-incomplete-classpath is used for image building. Use the option --initialize-at-run-time=groovy.grape.GrapeIvy to explicitly request delayed initialization of this class.#
+[randomnumber:31487]     analysis:  25,234.32 ms
+...
+[randomnumber:31487]      compile:  26,199.19 ms
+[randomnumber:31487]        image:   1,896.69 ms
+[randomnumber:31487]        write:     345.78 ms
+[randomnumber:31487]      [total]:  [.mark]*60,623.87 ms*
+
+$ _
+----
+
+[transition="none",background-color="{bg1}"]
+=== !
+
+[source,bash,subs="quotes,macros"]
+----
+$ native-image --no-server \
+    --no-fallback \
+    --report-unsupported-elements-at-runtime \
+    --allow-incomplete-classpath \
+    --initialize-at-build-time \
+    -cp ".:$GROOVY_HOME/lib/groovy-2.5.7.jar" \
+    RandomNumber
+----
+
+[transition="none",background-color="{bg1}"]
+=== !
+
+[source,bash,subs="quotes,macros"]
+----
+$ native-image --no-server \
+    --no-fallback \
+    --report-unsupported-elements-at-runtime \
+    --allow-incomplete-classpath \
+    --initialize-at-build-time \
+    *--initialize-at-run-time=org.codehaus.groovy.control.XStreamUtils,groovy.grape.GrapeIvy* \
+    -cp ".:$GROOVY_HOME/lib/groovy-2.5.7.jar" \
+    RandomNumber
+----
+
+[transition="none",background-color="{bg1}"]
+=== !
+
+[source,bash,subs="quotes,macros"]
+----
+$ native-image --no-server \
+    --no-fallback \
+    --report-unsupported-elements-at-runtime \
+    --allow-incomplete-classpath \
+    --initialize-at-build-time \
+    --initialize-at-run-time=org.codehaus.groovy.control.XStreamUtils,groovy.grape.GrapeIvy \
+    -cp ".:$GROOVY_HOME/lib/groovy-2.5.7.jar" \
+    RandomNumber
+[randomnumber:28584]    classlist:   2,407.72 ms
+[randomnumber:28584]        (cap):     828.62 ms
+[randomnumber:28584]        setup:   1,932.60 ms
+[randomnumber:28584]   (typeflow):  11,163.81 ms
+[randomnumber:28584]    (objects):  13,111.40 ms
+....
+[randomnumber:28584]      compile:  25,751.85 ms
+[randomnumber:28584]        image:   2,175.32 ms
+[randomnumber:28584]        write:     317.75 ms
+[randomnumber:28584]      [total]:  61,381.94 ms
+
+$ _
+----
+
+[transition="none",background-color="{bg1}"]
+=== !
+
+[source,bash,subs="quotes,macros"]
+----
+$ native-image --no-server \
+    --no-fallback \
+    --report-unsupported-elements-at-runtime \
+    --allow-incomplete-classpath \
+    --initialize-at-build-time \
+    --initialize-at-run-time=org.codehaus.groovy.control.XStreamUtils,groovy.grape.GrapeIvy \
+    -cp ".:$GROOVY_HOME/lib/groovy-2.5.7.jar" \
+    RandomNumber
+[randomnumber:28584]    classlist:   2,407.72 ms
+[randomnumber:28584]        (cap):     828.62 ms
+[randomnumber:28584]        setup:   1,932.60 ms
+[randomnumber:28584]   (typeflow):  11,163.81 ms
+[randomnumber:28584]    (objects):  13,111.40 ms
+....
+[randomnumber:28584]      compile:  25,751.85 ms
+[randomnumber:28584]        image:   2,175.32 ms
+[randomnumber:28584]        write:     317.75 ms
+[randomnumber:28584]      [total]:  [.mark]*61,381.94 ms*
+
+$ _
+----
+
+[transition="none",background-color="{bg1}"]
+=== !
+
+[source,bash,subs="quotes,macros"]
+----
+$ _
+----
+
+[transition="none",background-color="{bg1}"]
+=== !
+
+[source,bash,subs="quotes,macros"]
+----
+*$ ls -lah randomnumber*
+----
+
+[transition="none",background-color="{bg1}"]
+=== !
+
+[source,bash,subs="quotes,macros"]
+----
+$ ls -lah randomnumber
+-rwxrwxr-x 1 wololock wololock 21M 05-14 23:29 [.green]*randomnumber*
+
+$ _
+----
+
+[transition="none",background-color="{bg1}"]
+=== !
+
+[source,bash,subs="quotes,macros"]
+----
+$ ls -lah randomnumber
+-rwxrwxr-x 1 wololock wololock 21M 05-14 23:29 [.green]*randomnumber*
+
+*$ ./randomnumber*
+----
+
+[transition="none",background-color="{bg1}"]
+=== !
+
+[source,bash,subs="quotes,macros"]
+----
+$ ls -lah randomnumber
+-rwxrwxr-x 1 wololock wololock 21M 05-14 23:29 [.green]*randomnumber*
+
+*$ ./randomnumber*
+The random number is: 624
+Exception in thread "main" groovy.lang.MissingMethodException: No signature
+of method: RandomNumber$_main_closure1.doCall() is applicable for argument types: (Integer) values: [0]
+Possible solutions: findAll(), findAll(), isCase(java.lang.Object), isCase(java.lang.Object)
+	at org.codehaus.groovy.runtime.metaclass.ClosureMetaClass.invokeMethod(ClosureMetaClass.java:255)
+	at groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:1041)
+	at groovy.lang.Closure.call(Closure.java:405)
+	at org.codehaus.groovy.runtime.DefaultGroovyMethods.sum(DefaultGroovyMethods.java:6648)
+	at org.codehaus.groovy.runtime.DefaultGroovyMethods.sum(DefaultGroovyMethods.java:6548)
+	at RandomNumber.main(RandomNumber.groovy:7)
+
+$ _
+----
+
+[transition="none",background-color="{bg1}"]
+=== !
+
+[source,bash,subs="quotes,macros"]
+----
+$ ls -lah randomnumber
+-rwxrwxr-x 1 wololock wololock 21M 05-14 23:29 [.green]*randomnumber*
+
+*$ ./randomnumber*
+The random number is: 624
+Exception in thread "main" groovy.lang.MissingMethodException: No signature
+of method: [.mark]#RandomNumber$_main_closure1.doCall()# is applicable for argument types: (Integer) values: [0]
+Possible solutions: findAll(), findAll(), isCase(java.lang.Object), isCase(java.lang.Object)
+	at org.codehaus.groovy.runtime.metaclass.ClosureMetaClass.invokeMethod(ClosureMetaClass.java:255)
+	at groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:1041)
+	at groovy.lang.Closure.call(Closure.java:405)
+	at org.codehaus.groovy.runtime.DefaultGroovyMethods.sum(DefaultGroovyMethods.java:6648)
+	at org.codehaus.groovy.runtime.DefaultGroovyMethods.sum(DefaultGroovyMethods.java:6548)
+	at RandomNumber.main(RandomNumber.groovy:7)
+
+$ _
+----
+
+[transition="none",background-color="{bg1}"]
+=== !
+
+[source,groovy]
+----
+// RandomNumber.groovy
+import groovy.transform.CompileStatic
+
+@CompileStatic
+class RandomNumber {
+    static void main(String[] args) {
+        def random = new Random().nextInt(1000)
+
+        println "The random number is: $random"
+
+        def sum = (0..random).sum { int num -> num * 2 }
+
+        println "The doubled sum of numbers between 0 and $random is $sum"
+    }
+}
+----
+
+[transition="none",background-color="{bg1}"]
+=== !
+
+[source,groovy,subs="quotes"]
+----
+// RandomNumber.groovy
+import groovy.transform.CompileStatic
+
+@CompileStatic
+class RandomNumber {
+    static void main(String[] args) {
+        def random = new Random().nextInt(1000)
+
+        println "The random number is: $random"
+
+        def sum = (0..random).sum [.mark]**{ int num -> num * 2 }**
+
+        println "The doubled sum of numbers between 0 and $random is $sum"
+    }
+}
+----
+
+[transition="none",background-color="{bg1}"]
+=== !
+
+[source,bash,subs="quotes,macros"]
+----
+$ ls -lah randomnumber
+-rwxrwxr-x 1 wololock wololock 21M 05-14 23:29 [.green]*randomnumber*
+
+*$ ./randomnumber*
+The random number is: 624
+Exception in thread "main" groovy.lang.MissingMethodException: No signature
+of method: [.mark]#RandomNumber$_main_closure1.doCall()# is applicable for argument types: (Integer) values: [0]
+Possible solutions: findAll(), findAll(), isCase(java.lang.Object), isCase(java.lang.Object)
+	at org.codehaus.groovy.runtime.metaclass.ClosureMetaClass.invokeMethod(ClosureMetaClass.java:255)
+	at groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:1041)
+	at groovy.lang.Closure.call(Closure.java:405)
+	at org.codehaus.groovy.runtime.DefaultGroovyMethods.sum(DefaultGroovyMethods.java:6648)
+	at org.codehaus.groovy.runtime.DefaultGroovyMethods.sum(DefaultGroovyMethods.java:6548)
+	at RandomNumber.main(RandomNumber.groovy:7)
+
+$ _
+----
+
+[transition="none",background-color="{bg1}"]
+=== !
+
+[source,bash,subs="quotes,macros"]
+----
+$ _
+----
+
+
+[transition="none",background-color="{bg1}"]
+=== !
+
+[source,bash,subs="quotes,macros"]
+----
+*$ vim reflections.json*
+----
+
+[transition="none",background-color="{bg1}"]
+=== !
+
+[source,bash,subs="quotes,macros"]
+----
+|
+[.purple]#~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~#
+----
+
+[transition="none",background-color="{bg1}"]
+=== !
+
+[source,bash,subs="quotes,macros"]
+----
+[
+  {
+    "name": "RandomNumber$_main_closure1",
+    "allDeclaredConstructors": true,
+    "allPublicConstructors": true,
+    "allDeclaredMethods": true,
+    "allPublicMethods": true
+  }
+]
+[.purple]#~
+~
+~
+~#
+----
+
+[transition="none",background-color="{bg1}"]
+=== !
+
+[source,bash,subs="quotes,macros"]
+----
+$ vim reflections.json
+
+$ _
+----
+
+[transition="none",background-color="{bg1}"]
+=== !
+
+[source,bash,subs="quotes,macros"]
+----
+$ vim reflections.json
+
+$ native-image --no-server \
+    --no-fallback \
+    --report-unsupported-elements-at-runtime \
+    --allow-incomplete-classpath \
+    --initialize-at-build-time \
+    --initialize-at-run-time=org.codehaus.groovy.control.XStreamUtils,groovy.grape.GrapeIvy \
+    -cp ".:$GROOVY_HOME/lib/groovy-2.5.7.jar" \
+    RandomNumber
+----
+
+[transition="none",background-color="{bg1}"]
+=== !
+
+[source,bash,subs="quotes,macros"]
+----
+$ vim reflections.json
+
+$ native-image --no-server \
+    --no-fallback \
+    --report-unsupported-elements-at-runtime \
+    --allow-incomplete-classpath \
+    --initialize-at-build-time \
+    --initialize-at-run-time=org.codehaus.groovy.control.XStreamUtils,groovy.grape.GrapeIvy \
+    *-H:ReflectionConfigurationFiles=reflections.json* \
+    -cp ".:$GROOVY_HOME/lib/groovy-2.5.7.jar" \
+    RandomNumber
+----
+
+[transition="none",background-color="{bg1}"]
+=== !
+
+[source,bash,subs="quotes,macros"]
+----
+$ vim reflections.json
+
+$ native-image --no-server \
+    --no-fallback \
+    --report-unsupported-elements-at-runtime \
+    --allow-incomplete-classpath \
+    --initialize-at-build-time \
+    --initialize-at-run-time=org.codehaus.groovy.control.XStreamUtils,groovy.grape.GrapeIvy \
+    -H:ReflectionConfigurationFiles=reflections.json \
+    -cp ".:$GROOVY_HOME/lib/groovy-2.5.7.jar" \
+    RandomNumber
+[randomnumber:7680]    classlist:   2,368.40 ms
+[randomnumber:7680]        (cap):     890.32 ms
+[randomnumber:7680]        setup:   2,025.75 ms
+[randomnumber:7680]   (typeflow):  11,078.72 ms
+...
+[randomnumber:7680]      compile:  30,400.57 ms
+[randomnumber:7680]        image:   2,603.14 ms
+[randomnumber:7680]        write:     317.86 ms
+[randomnumber:7680]      [total]:  67,206.07 ms
+
+$ _
+----
+
+[transition="none",background-color="{bg1}"]
+=== !
+
+[source,bash,subs="quotes,macros"]
+----
+$ vim reflections.json
+
+$ native-image --no-server \
+    --no-fallback \
+    --report-unsupported-elements-at-runtime \
+    --allow-incomplete-classpath \
+    --initialize-at-build-time \
+    --initialize-at-run-time=org.codehaus.groovy.control.XStreamUtils,groovy.grape.GrapeIvy \
+    -H:ReflectionConfigurationFiles=reflections.json \
+    -cp ".:$GROOVY_HOME/lib/groovy-2.5.7.jar" \
+    RandomNumber
+[randomnumber:7680]    classlist:   2,368.40 ms
+[randomnumber:7680]        (cap):     890.32 ms
+[randomnumber:7680]        setup:   2,025.75 ms
+[randomnumber:7680]   (typeflow):  11,078.72 ms
+...
+[randomnumber:7680]      compile:  30,400.57 ms
+[randomnumber:7680]        image:   2,603.14 ms
+[randomnumber:7680]        write:     317.86 ms
+[randomnumber:7680]      [total]:  [.mark]*67,206.07 ms*
+
+$ _
+----
+
+[transition="none",background-color="{bg1}"]
+=== !
+
+[source,bash,subs="quotes,macros"]
+----
+$ _
+----
+
+[transition="none",background-color="{bg1}"]
+=== !
+
+[source,bash,subs="quotes,macros"]
+----
+*$ ./randomnumber*
+----
+
+[transition="none",background-color="{bg1}"]
+=== !
+
+[source,bash,subs="quotes,macros"]
+----
+*$ ./randomnumber*
+The random number is: 30
+java.lang.ClassNotFoundException: org.codehaus.groovy.runtime.dgm$521
+    at com.oracle.svm.core.hub.ClassForNameSupport.forName(ClassForNameSupport.java:51)
+    ...
+    at groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:1041)
+    at org.codehaus.groovy.runtime.DefaultGroovyMethods.sum(DefaultGroovyMethods.java:6655)
+    at org.codehaus.groovy.runtime.DefaultGroovyMethods.sum(DefaultGroovyMethods.java:6548)
+    at RandomNumber.main(RandomNumber.groovy:7)
+Exception in thread "main" groovy.lang.GroovyRuntimeException: Failed to create DGM method proxy : java.lang.ClassNotFoundException: org.codehaus.groovy.runtime.dgm$521
+    at org.codehaus.groovy.reflection.GeneratedMetaMethod$Proxy.createProxy(GeneratedMetaMethod.java:106)
+    ...
+    at RandomNumber.main(RandomNumber.groovy:7)
+Caused by: java.lang.ClassNotFoundException: org.codehaus.groovy.runtime.dgm$521
+    at com.oracle.svm.core.hub.ClassForNameSupport.forName(ClassForNameSupport.java:51)
+    at java.lang.ClassLoader.loadClass(Target_java_lang_ClassLoader.java:131)
+    at org.codehaus.groovy.reflection.GeneratedMetaMethod$Proxy.createProxy(GeneratedMetaMethod.java:101)
+    ... 12 more
+
+$ _
+----
+
+[transition="none",background-color="{bg1}"]
+=== !
+
+[source,bash,subs="quotes,macros"]
+----
+*$ ./randomnumber*
+The random number is: 30
+java.lang.ClassNotFoundException: [.mark]*org.codehaus.groovy.runtime.dgm$521*
+    at com.oracle.svm.core.hub.ClassForNameSupport.forName(ClassForNameSupport.java:51)
+    ...
+    at groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:1041)
+    at org.codehaus.groovy.runtime.DefaultGroovyMethods.sum(DefaultGroovyMethods.java:6655)
+    at org.codehaus.groovy.runtime.DefaultGroovyMethods.sum(DefaultGroovyMethods.java:6548)
+    at RandomNumber.main(RandomNumber.groovy:7)
+Exception in thread "main" groovy.lang.GroovyRuntimeException: Failed to create DGM method proxy : java.lang.ClassNotFoundException: org.codehaus.groovy.runtime.dgm$521
+    at org.codehaus.groovy.reflection.GeneratedMetaMethod$Proxy.createProxy(GeneratedMetaMethod.java:106)
+    ...
+    at RandomNumber.main(RandomNumber.groovy:7)
+Caused by: java.lang.ClassNotFoundException: org.codehaus.groovy.runtime.dgm$521
+    at com.oracle.svm.core.hub.ClassForNameSupport.forName(ClassForNameSupport.java:51)
+    at java.lang.ClassLoader.loadClass(Target_java_lang_ClassLoader.java:131)
+    at org.codehaus.groovy.reflection.GeneratedMetaMethod$Proxy.createProxy(GeneratedMetaMethod.java:101)
+    ... 12 more
+
+$ _
+----
+
+[transition="none",background-color="{bg1}"]
+=== !
+
+[source,bash,subs="quotes,macros"]
+----
+$ _
+----
+
+[transition="none",background-color="{bg1}"]
+=== !
+
+[source,bash,subs="quotes,macros"]
+----
+*$ vim reflections.json*
+----
+
+[transition="none",background-color="{bg1}"]
+=== !
+
+[source,bash,subs="quotes,macros"]
+----
+[
+  {
+    "name": "RandomNumber$_main_closure1",
+    "allDeclaredConstructors": true,
+    "allPublicConstructors": true,
+    "allDeclaredMethods": true,
+    "allPublicMethods": true
+  }
+]
+[.purple]#~
+~
+~
+~#
+----
+
+[transition="none",background-color="{bg1}"]
+=== !
+
+[source,bash,subs="quotes,macros"]
+----
+[
+  {
+    "name": "RandomNumber$_main_closure1",
+    "allDeclaredConstructors": true,
+    "allPublicConstructors": true,
+    "allDeclaredMethods": true,
+    "allPublicMethods": true
+  },*{
+    "name": "org.codehaus.groovy.runtime.dgm$521",
+    "allDeclaredConstructors": true,
+    "allPublicConstructors": true,
+    "allDeclaredMethods": true,
+    "allPublicMethods": true
+  }*
+]
+----
+
+[transition="none",background-color="{bg1}"]
+=== !
+
+[source,bash,subs="quotes,macros"]
+----
+[
+  {
+    "name": "RandomNumber$_main_closure1",
+    "allDeclaredConstructors": true,
+    "allPublicConstructors": true,
+    "allDeclaredMethods": true,
+    "allPublicMethods": true
+  },{
+    "name": "org.codehaus.groovy.runtime.dgm$521",
+    "allDeclaredConstructors": true,
+    "allPublicConstructors": true,
+    "allDeclaredMethods": true,
+    "allPublicMethods": true
+  },*{
+    "name": "org.codehaus.groovy.runtime.dgm$1180",
+    "allDeclaredConstructors": true,
+    "allPublicConstructors": true,
+    "allDeclaredMethods": true,
+    "allPublicMethods": true
+  }*
+]
+----
+
+[transition="none",background-color="{bg1}"]
+=== !
+
+[source,bash,subs="quotes,macros"]
+----
+$ vim reflections.json
+
+$ _
+----
+
+[transition="none",background-color="{bg1}"]
+=== !
+
+[source,bash,subs="quotes,macros"]
+----
+$ vim reflections.json
+
+$ native-image --no-server \
+    --no-fallback \
+    --report-unsupported-elements-at-runtime \
+    --allow-incomplete-classpath \
+    --initialize-at-build-time \
+    --initialize-at-run-time=org.codehaus.groovy.control.XStreamUtils,groovy.grape.GrapeIvy \
+    -H:ReflectionConfigurationFiles=reflections.json \
+    -cp ".:$GROOVY_HOME/lib/groovy-2.5.7.jar" \
+    RandomNumber
+----
+
+[transition="none",background-color="{bg1}"]
+=== !
+
+[source,bash,subs="quotes,macros"]
+----
+$ vim reflections.json
+
+$ native-image --no-server \
+    --no-fallback \
+    --report-unsupported-elements-at-runtime \
+    --allow-incomplete-classpath \
+    --initialize-at-build-time \
+    --initialize-at-run-time=org.codehaus.groovy.control.XStreamUtils,groovy.grape.GrapeIvy \
+    -H:ReflectionConfigurationFiles=reflections.json \
+    -cp ".:$GROOVY_HOME/lib/groovy-2.5.7.jar" \
+    RandomNumber
+[randomnumber:28896]    classlist:   2,496.04 ms
+[randomnumber:28896]        (cap):     875.97 ms
+[randomnumber:28896]        setup:   2,010.72 ms
+[randomnumber:28896]   (typeflow):  10,719.53 ms
+...
+[randomnumber:28896]      compile:  27,489.45 ms
+[randomnumber:28896]        image:   2,182.01 ms
+[randomnumber:28896]        write:     345.20 ms
+[randomnumber:28896]      [total]:  62,006.46 ms
+
+$ _
+----
+
+[transition="none",background-color="{bg1}"]
+=== !
+
+[source,bash,subs="quotes,macros"]
+----
+$ vim reflections.json
+
+$ native-image --no-server \
+    --no-fallback \
+    --report-unsupported-elements-at-runtime \
+    --allow-incomplete-classpath \
+    --initialize-at-build-time \
+    --initialize-at-run-time=org.codehaus.groovy.control.XStreamUtils,groovy.grape.GrapeIvy \
+    -H:ReflectionConfigurationFiles=reflections.json \
+    -cp ".:$GROOVY_HOME/lib/groovy-2.5.7.jar" \
+    RandomNumber
+[randomnumber:28896]    classlist:   2,496.04 ms
+[randomnumber:28896]        (cap):     875.97 ms
+[randomnumber:28896]        setup:   2,010.72 ms
+[randomnumber:28896]   (typeflow):  10,719.53 ms
+...
+[randomnumber:28896]      compile:  27,489.45 ms
+[randomnumber:28896]        image:   2,182.01 ms
+[randomnumber:28896]        write:     345.20 ms
+[randomnumber:28896]      [total]:  [.mark]*62,006.46 ms*
+
+$ _
+----
+
+[transition="none",background-color="{bg1}"]
+=== !
+
+[source,bash,subs="quotes,macros"]
+----
+$ _
+----
+
+[transition="none",background-color="{bg1}"]
+=== !
+
+[source,bash,subs="quotes,macros"]
+----
+*$ ./randomnumber*
+----
+
+[transition="none",background-color="{bg1}"]
+=== !
+
+[source,bash,subs="quotes,macros"]
+----
+$ ./randomnumber
+The random number is: 109
+The doubled sum of numbers between 0 and 109 is 11990
+
+$ _
+----
+
+[transition="none",background-color="{bg1}"]
+=== !
+
+[source,bash,subs="quotes,macros"]
+----
+$ ./randomnumber
+The random number is: 109
+The doubled sum of numbers between 0 and 109 is 11990
+
+*$ time ./randomnumber*
+----
+
+[transition="none",background-color="{bg1}"]
+=== !
+
+[source,bash,subs="quotes,macros"]
+----
+$ ./randomnumber
+The random number is: 109
+The doubled sum of numbers between 0 and 109 is 11990
+
+$ time ./randomnumber
+The random number is: 534
+The doubled sum of numbers between 0 and 534 is 285690
+
+real	0m0,007s
+user	0m0,004s
+sys	0m0,003s
+
+$ _
+----
+
+[transition="none",background-color="{bg1}"]
+=== !
+
+[source,bash,subs="quotes,macros"]
+----
+$ ./randomnumber
+The random number is: 109
+The doubled sum of numbers between 0 and 109 is 11990
+
+$ time ./randomnumber
+The random number is: 534
+The doubled sum of numbers between 0 and 534 is 285690
+
+real	[.mark]*0m0,007s*
+user	0m0,004s
+sys	0m0,003s
+
+$ _
+----
+
+[transition="none",background-color="{bg1}"]
+=== !
+
+[source,bash,subs="quotes,macros"]
+----
+$ ./randomnumber
+The random number is: 109
+The doubled sum of numbers between 0 and 109 is 11990
+
+$ time ./randomnumber
+The random number is: 534
+The doubled sum of numbers between 0 and 534 is 285690
+
+real	[.mark]*0m0,007s* vs. [.mark]*0m0,959s*
+user	0m0,004s
+sys	0m0,003s
+
+$ _
+----
+
+[transition="none",background-color="{bg1}"]
+=== !
+
+[source,bash,subs="quotes,macros"]
+----
+$ ./randomnumber
+The random number is: 109
+The doubled sum of numbers between 0 and 109 is 11990
+
+$ time ./randomnumber
+The random number is: 534
+The doubled sum of numbers between 0 and 534 is 285690
+
+real	[.mark]*0m0,007s* vs. [.mark]*0m0,959s* vs. [.mark]*0m0,354s*
+user	0m0,004s
+sys	0m0,003s
+
+$ _
+----
+
+[transition="none",background-color="{bg1}"]
+=== !
+
+[source,bash,subs="quotes,macros"]
+----
+$ _
+----
+
+[transition="none",background-color="{bg1}"]
+=== !
+
+[source,bash,subs="quotes,macros"]
+----
+$ native-image --no-server \
+    --no-fallback \
+    --report-unsupported-elements-at-runtime \
+    --allow-incomplete-classpath \
+    --initialize-at-build-time \
+    --initialize-at-run-time=org.codehaus.groovy.control.XStreamUtils,groovy.grape.GrapeIvy \
+    -H:ReflectionConfigurationFiles=reflections.json \
+    -cp ".:$GROOVY_HOME/lib/groovy-2.5.7.jar" \
+    RandomNumber
+----
+
+[transition="none",background-color="{bg1}"]
+=== !
+
+[source,bash,subs="quotes,macros"]
+----
+$ native-image --no-server \
+    --no-fallback \
+    --report-unsupported-elements-at-runtime \
+    --allow-incomplete-classpath \
+    --initialize-at-build-time \
+    --initialize-at-run-time=org.codehaus.groovy.control.XStreamUtils,groovy.grape.GrapeIvy \
+    [.line-through]*-H:ReflectionConfigurationFiles=reflections.json* \
+    -cp ".:$GROOVY_HOME/lib/groovy-2.5.7.jar" \
+    RandomNumber
+----
+
+[transition="none",background-color="{bg1}"]
+=== !
+
+[source,bash,subs="quotes,macros"]
+----
+$ _
+----
+
+[transition="none",background-color="{bg1}"]
+=== !
+
+[source,bash,subs="quotes,macros"]
+----
+$ java -cp ".:$GROOVY_HOME/lib/groovy-2.5.7.jar" RandomNumber
+----
+
+[transition="none",background-color="{bg1}"]
+=== !
+
+[source,bash,subs="quotes,macros"]
+----
+$ java -cp ".:$GROOVY_HOME/lib/groovy-2.5.7.jar" \
+    *-agentlib:native-image-agent=config-output-dir=conf/* \
+    RandomNumber
+----
+
+[transition="none",background-color="{bg1}"]
+=== !
+
+[source,bash,subs="quotes,macros"]
+----
+$ java -cp ".:$GROOVY_HOME/lib/groovy-2.5.7.jar" \
+    -agentlib:native-image-agent=config-output-dir=conf/ \
+    RandomNumber
+The random number is: 670
+The doubled sum of numbers between 0 and 670 is 449570
+
+$ _
+----
+
+[transition="none",background-color="{bg1}"]
+=== !
+
+[source,bash,subs="quotes,macros"]
+----
+$ java -cp ".:$GROOVY_HOME/lib/groovy-2.5.7.jar" \
+    -agentlib:native-image-agent=config-output-dir=conf/ \
+    RandomNumber
+The random number is: 670
+The doubled sum of numbers between 0 and 670 is 449570
+
+*$ tree conf/*
+----
+
+[transition="none",background-color="{bg1}"]
+=== !
+
+[source,bash,subs="quotes,macros"]
+----
+$ java -cp ".:$GROOVY_HOME/lib/groovy-2.5.7.jar" \
+    -agentlib:native-image-agent=config-output-dir=conf/ \
+    RandomNumber
+The random number is: 670
+The doubled sum of numbers between 0 and 670 is 449570
+
+$ tree conf/
+[.purple]*conf*
+├── jni-config.json
+├── proxy-config.json
+├── reflect-config.json
+└── resource-config.json
+
+0 directories, 4 files
+
+$ _
+----
+
+[transition="none",background-color="{bg1}"]
+=== !
+
+[source,bash,subs="quotes,macros"]
+----
+$ native-image --no-server \
+    --no-fallback \
+    --report-unsupported-elements-at-runtime \
+    --allow-incomplete-classpath \
+    --initialize-at-build-time \
+    --initialize-at-run-time=org.codehaus.groovy.control.XStreamUtils,groovy.grape.GrapeIvy \
+    [.line-through]*-H:ReflectionConfigurationFiles=reflections.json* \
+    -cp ".:$GROOVY_HOME/lib/groovy-2.5.7.jar" \
+    RandomNumber
+----
+
+[transition="none",background-color="{bg1}"]
+=== !
+
+[source,bash,subs="quotes,macros"]
+----
+$ native-image --no-server \
+    --no-fallback \
+    --report-unsupported-elements-at-runtime \
+    --allow-incomplete-classpath \
+    --initialize-at-build-time \
+    --initialize-at-run-time=org.codehaus.groovy.control.XStreamUtils,groovy.grape.GrapeIvy \
+    *-H:ConfigurationFileDirectories=conf/* \
+    -cp ".:$GROOVY_HOME/lib/groovy-2.5.7.jar" \
+    RandomNumber
+----
+
+[transition="none",background-color="{bg1}"]
+=== !
+
+[source,bash,subs="quotes,macros"]
+----
+$ native-image --no-server \
+    --no-fallback \
+    --report-unsupported-elements-at-runtime \
+    --allow-incomplete-classpath \
+    --initialize-at-build-time \
+    --initialize-at-run-time=org.codehaus.groovy.control.XStreamUtils,groovy.grape.GrapeIvy \
+    -H:ConfigurationFileDirectories=conf/ \
+    -cp ".:$GROOVY_HOME/lib/groovy-2.5.7.jar" \
+    *-jar RandomNumber.jar*
+----
+
+[transition="none",background-color="{bg1}"]
+=== !
+
+[source,bash,subs="quotes,macros"]
+----
+$ _
+----
+
+[transition="none",background-color="{bg1}"]
+=== !
+
+[source,bash,subs="quotes,macros"]
+----
+*$ native-image --help*
+----
+
+[transition="none",background-color="{bg1}"]
+=== !
+
+[source,bash,subs="quotes,macros"]
+----
+$ native-image --help
+
+*$ native-image --help-extra*
+----
+
+[transition="none",background-color="{bg1}"]
+=== !
+
+[source,bash,subs="quotes,macros"]
+----
+$ native-image --help
+
+$ native-image --help-extra
+
+*$ native-image --expert-options*
+----
+
+[transition="none",background-color="{bg1}"]
+=== !
+
+[source,bash,subs="quotes,macros"]
+----
+$ native-image --help
+
+$ native-image --help-extra
+
+*$ native-image --expert-options*
+  -H:±AllowIncompleteClasspath      Allow image building with an incomplete class path: report type resolution errors at run time when they are accessed the
+                                    first time, instead of during image building. Default: - (disabled).
+  -H:±AllowVMInspection             Enables features that allow the VM to be inspected during runtime. Default: - (disabled).
+  -H:CPUFeatures=...                Comma separated list of CPU features that will be used for image generation on the AMD64 platform. Features SSE and SSE2
+                                    are enabled by default. Other available features are: CX8, CMOV, FXSR, HT, MMX, AMD_3DNOW_PREFETCH, SSE3, SSSE3, SSE4A,
+                                    SSE4_1, SSE4_2, POPCNT, LZCNT, TSC, TSCINV, AVX, AVX2, AES, ERMS, CLMUL, BMI1, BMI2, RTM, ADX, AVX512F, AVX512DQ,
+                                    AVX512PF, AVX512ER, AVX512CD, AVX512BW. Default: None
+  -H:CStandard="C89"                C standard to use in header files. Possible values are: [C89, C99, C11].
+  -H:Class=""                       Class containing the default entry point method. Optional if --shared is used.
+  -H:ClassInitialization=...        A comma-separated list of classes appended with their initialization strategy (':build_time', ':rerun', or ':run_time').
+                                    Default: None
+  -H:CompilerBackend="lir"          Backend used by the compiler.
+  ...
+----

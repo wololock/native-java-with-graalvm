@@ -1,0 +1,41 @@
+= Native Java With GraalVM
+
+== Examples used in the presentation
+
+* https://e.printstacktrace.blog/graalvm-and-groovy-how-to-start/
+
+* https://github.com/wololock/graalvm-groovy-examples
+
+* https://e.printstacktrace.blog/ratpack-graalvm-how-to-start/
+
+* https://github.com/wololock/ratpack-graalvm-demo
+
+== Additional resources
+
+* https://www.graalvm.org/docs/why-graal/
+
+* https://github.com/oracle/graal/blob/master/substratevm/LIMITATIONS.md
+
+* https://medium.com/graalvm/graalvm-ten-things-12d9111f307d
+
+* https://www.baeldung.com/graal-java-jit-compiler
+
+* https://openjdk.java.net/jeps/295
+
+* https://openjdk.java.net/jeps/243
+
+=== Videos
+
+* https://www.youtube.com/watch?v=W-5kUG8_mbk
+
+* https://www.youtube.com/watch?v=topKYJgv6qA
+
+* https://www.youtube.com/watch?v=a-XEZobXspo
+
+* https://www.youtube.com/watch?v=kiBH8zurISI
+
+== Building slides
+
+```
+./gradlew clean asciidoctor
+```

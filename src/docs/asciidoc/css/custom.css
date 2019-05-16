@@ -1,0 +1,437 @@
+@import url('https://fonts.googleapis.com/css?family=Lora:400,400i,700,700i|Quattrocento+Sans|Ubuntu+Mono:400,700');
+
+@keyframes slideInFromLeft {
+    0% {
+        transform: translateX(-100%);
+    }
+    100% {
+        transform: translateX(0);
+    }
+}
+@keyframes slideInFromRight {
+    0% {
+        transform: translateX(100%);
+    }
+    100% {
+        transform: translateX(0);
+    }
+}
+@keyframes slideInFromBottom {
+    0% {
+        transform: translateY(100%);
+    }
+    100% {
+        transform: translateX(0);
+    }
+}
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+    10% {
+        opacity: 0;
+    }
+    20% {
+        opacity: 5%;
+    }
+    100% {
+        opacity: 100%;
+    }
+}
+
+.white {
+    color: #fcfcfc;
+}
+
+.red {
+    color: red;
+}
+
+.yellow {
+    color: #ffd405;
+}
+
+.purple {
+    color: #bd94db;
+}
+
+.black {
+    color: #222;
+}
+
+.green {
+    color: #3ab244;
+}
+
+.turquoise {
+    color: #1cd9e0;
+}
+
+.fa-twitter {
+    color: #61aeee;
+}
+
+.grey {
+    color: #7f7f7f;
+}
+
+.color-graal-1 {
+    color: #00758f;
+}
+
+.color-graal-2 {
+    color: #f29111;
+}
+
+.smaller {
+    font-size: 0.81em;
+}
+
+.reveal .xs {
+    font-size: 0.6em;
+}
+
+.reveal .xxs {
+    font-size: 0.21em;
+}
+
+.reveal .smaller-text {
+    font-size: 0.8em;
+    line-height: 0.6em;
+}
+
+.reveal strong.light {
+    border: 3px solid red;
+}
+
+.reveal .nobullets ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.monospace {
+    font-family: 'Ubuntu Mono', monospace;
+}
+
+
+.reveal {
+    font-family: 'Quattrocento Sans', sans-serif;
+    font-size: 2rem;
+}
+
+.reveal .lora {
+    font-family: 'Lora', serif;
+}
+
+.reveal .text-left {
+    text-align: left;
+}
+
+.reveal .margin-left-200 {
+    margin-left: 200px;
+}
+
+.reveal .margin-left-100 {
+    margin-left: 100px;
+}
+
+.reveal .margin-left-150 {
+    margin-left: 150px;
+}
+
+.reveal .margin-top-30 {
+    margin-top: 30px;
+}
+
+.reveal .margin-top-60 {
+    margin-top: 60px;
+}
+
+.reveal a {
+    color: #518cc1;
+}
+
+.reveal .font-3rem {
+    font-size: 3rem;
+}
+
+.reveal h1,
+.reveal h2 {
+    font-family: 'Lora', serif;
+    text-transform: none;
+    font-weight: 700;
+    font-size: 4rem;
+}
+
+.reveal h1 {
+    padding-bottom: 20px;
+    border-bottom: 6px solid #f3f3f3;
+}
+
+.reveal h2 {
+    font-size: 4rem;
+}
+
+.reveal .whoami h2 {
+    text-align: left;
+    padding-left: 200px;
+    position: relative;
+    z-index: 1;
+    overflow: hidden;
+}
+
+.reveal .whoami.present h2 {
+    animation: 650ms ease-out 0s 1 slideInFromRight;
+}
+
+.reveal .whoami h2:before,
+.reveal .whoami h2:after {
+    position: absolute;
+    top: 51%;
+    overflow: hidden;
+    width: 50%;
+    height: 2px;
+    content: '\a0';
+    background-color: #d3d9de;
+    margin-left: 20px;
+}
+
+.reveal .whoami h2:before {
+    margin-left: -52%;
+    text-align: right;
+}
+
+.reveal em {
+    font-family: 'Lora', serif;
+}
+
+.reveal mark,
+.reveal .mark {
+    background: #ffcd00;
+    color: #444;
+    padding-left: 5px;
+    padding-right: 5px;
+}
+
+.reveal div.title {
+    text-align: left;
+    font-size: 1.15rem;
+}
+
+.reveal section img {
+    border: none;
+    box-shadow: none;
+}
+
+.reveal .author img {
+    border-radius: 50%;
+    width: 40%;
+    border: 2px solid #fff;
+    box-shadow: 0 0 10px #bbb;
+}
+
+.reveal .author {
+    position: absolute;
+    top: -30px;
+    left: -70px;
+    z-index: 99;
+}
+
+.reveal .large {
+    font-size: 4rem;
+}
+
+.reveal .x-large {
+    font-size: 6rem;
+}
+
+.reveal .line-through {
+    text-decoration-line: line-through;
+    text-decoration-color: red;
+    color: #333;
+}
+
+.reveal code .line-through {
+    color: inherit;
+}
+
+.reveal pre {
+    font-family: 'Ubuntu Mono', monospace;
+    font-size: 1.5rem;
+    line-height: 2.2rem;
+    display: block;
+    position: relative;
+    margin: 20px auto;
+    text-align: left;
+    word-wrap: break-word;
+    width: 100%;
+    box-shadow: none;
+}
+
+.reveal pre.small {
+    font-size: 1rem;
+    line-height: 1.5rem;
+}
+
+.reveal code {
+    font-family: 'Ubuntu Mono', monospace;
+    height: 700px;
+}
+
+.reveal code:not(.hljs) {
+    background: #ebf2f6;
+    color: #4271ae;
+    padding: 2px 4px;
+}
+
+.reveal pre code {
+    display: block;
+    padding: 5px;
+    overflow: auto;
+    max-height: 400px;
+    word-wrap: normal;
+    overflow: hidden;
+}
+
+.reveal pre::before {
+    background-color: #d8d8da;
+    border-top-left-radius: 4px;
+    border-top-right-radius: 4px;
+    color: #8c95a6;
+    content: "•••";
+    display: block;
+    font-size: 1em;
+    line-height: 1.2;
+    text-indent: .5em;
+    width: 100%;
+}
+
+.reveal pre code {
+    /*background-color: #282c34;*/
+    /*background-color: #fafafa;*/
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+    max-height: 600px;
+    padding: 10px 15px;
+}
+
+.reveal .logos {
+    position: relative;
+    height: 100%;
+}
+
+.reveal .logos .logo {
+    position: absolute;
+}
+
+.reveal .logos.present .logo {
+    animation: 1s ease-out 0s 1 fadeIn;
+}
+
+.reveal .logos .git {
+    top: 10%;
+    left: 15%;
+}
+.reveal .logos.present .git {
+    animation-duration: 3s;
+}
+
+.reveal .logos .github {
+    top: 5%;
+    right: 30%;
+}
+.reveal .logos.present .github {
+    animation-duration: 4s;
+}
+
+.reveal .logos .idea {
+    top: 30%;
+    right: 15%;
+}
+.reveal .logos.present .idea {
+    animation-duration: 5s;
+}
+
+.reveal .logos .asciidoctor {
+    top: 45%;
+    left: 10%;
+}
+.reveal .logos.present .asciidoctor {
+    animation-duration: 3s;
+}
+
+.reveal .logos .hexo {
+    top: 30%;
+    left: 50%;
+}
+.reveal .logos.present .hexo {
+    animation-duration: 2.5s;
+}
+
+.reveal .logos .travis {
+    top: 30%;
+    left: 27%;
+}
+.reveal .logos.present .travis {
+    animation-duration: 3s;
+}
+
+.reveal .logos .cloudflare {
+    bottom: 20%;
+    left: 30%;
+}
+.reveal .logos.present .cloudflare {
+    animation-duration: 3s;
+}
+
+.reveal .upwork img {
+    margin: 7px 0 -7px 0;
+}
+
+.reveal .present .animation-slide-bottom {
+    animation: 650ms ease-out 0s 1 slideInFromBottom;
+}
+.reveal .present .animation-slide-left {
+    animation: 650ms ease-out 0s 1 slideInFromLeft;
+}
+.reveal .present .animation-slide-right {
+    animation: 650ms ease-out 0s 1 slideInFromRight;
+}
+
+.footer {
+    font-family: 'Ubuntu Mono', monospace;
+    font-size: 1.4rem;
+    position: absolute;
+    bottom: 0;
+    color: #555;
+    display: block;
+    width: 100%;
+}
+
+.footer .inner {
+    padding: 0 128px 20px 0;
+    text-align: right;
+}
+
+.footer img.event-logo {
+    display: block;
+    max-height: 96px;
+    position: absolute;
+    left: 20px;
+    bottom: 20px;
+}
+
+@media all and (max-width: 1024px) {
+    .reveal pre {
+        font-size: 1.5rem;
+        line-height: 1.6rem;
+    }
+}
+
+@media print {
+    .reveal pre {
+        font-size: 1.3rem;
+        line-height: 1.5rem;
+    }
+}
